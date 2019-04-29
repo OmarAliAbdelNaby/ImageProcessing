@@ -119,6 +119,8 @@ resized = cv2.resize(output, dim, interpolation = cv2.INTER_AREA)
 cv2.imshow('resizedOutput', resized)
 cv2.waitKey(0)
 
+cv2.imwrite('LCD.png', resized)
+
 kernel2 = cv2.getStructuringElement(cv2.MORPH_RECT,(5,5))
 
 opening = cv2.morphologyEx(resized, cv2.MORPH_OPEN, kernel2)
@@ -154,7 +156,7 @@ new_height = height/2
 
 left = (width - width)/2
 top = (height - new_height)/2 -14
-right = ((width + width)/2)
+right = ((width + width)/2) -10
 bottom = (height + new_height)/2 +14
 
 cropped = im.crop((left, top, right, bottom))
