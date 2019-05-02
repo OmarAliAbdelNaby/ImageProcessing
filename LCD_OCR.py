@@ -268,7 +268,7 @@ def recognize_digits_line_method(digits_positions, output_img, input_img):
 def main():
     #args = parser.parse_args()
     #blurred, gray_img = load_image(args.image_path, show=args.show_image)
-    blurred, gray_img = load_image('warpedIMG.jpg', show=True)
+    blurred, gray_img = load_image('warpedIMG.jpg', show=False)
     output1 = gray_img
 
     #----------------------- cropping ----------------------------
@@ -288,7 +288,7 @@ def main():
     #---------------------------------------------------------------
 
     #------------------------ Resizing -----------------------------
-    blurred, gray_img = load_image('out.jpg', show=True)
+    blurred, gray_img = load_image('out.jpg', show=False)
     output = gray_img
     scale_percent = 300  # percent of original size
     width = int(output.shape[1] * scale_percent / 100)
@@ -298,14 +298,17 @@ def main():
     resized = cv2.resize(output, dim, interpolation=cv2.INTER_AREA)
     #--------------------------------------------------------------
 
-    dst = preprocess(resized, THRESHOLD, show=True)
+    dst = preprocess(resized, THRESHOLD, show=False)
     digits_positions = find_digits_positions(dst)
     digits = recognize_digits_line_method(digits_positions, output, dst)
-    if True:
-        cv2.imshow('output', output)
-        cv2.waitKey()
-        cv2.destroyAllWindows()
-    print(digits)
+
+    serverOutput = ''
+    for everyDigit in digits:
+        if everyDigit.__str__().isdigit():
+            serverOutput = serverOutput + everyDigit.__str__()
+
+    print(serverOutput)
+
 
 
 if __name__ == '__main__':
