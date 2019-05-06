@@ -4,7 +4,7 @@ import sys
 import os
 
 def GntData():
-    MIN_Cnt_area = 100
+    MIN_Cnt_area = 50
     RESIZED_IMG_WIDTH = 20
     RESIZED_IMG_HEIGHT = 30
     imgTrainingNums = cv2.imread("nums.jpg")
