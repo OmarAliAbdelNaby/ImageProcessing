@@ -296,7 +296,7 @@ def main():
     dim = (width, height)
     # resize image
     resized = cv2.resize(output, dim, interpolation=cv2.INTER_AREA)
-    cv2.imshow('resiezewd', resized)
+    #cv2.imshow('resiezewd', resized)
     cv2.waitKey(0)
     #--------------------------------------------------------------
 
