@@ -92,7 +92,7 @@ def Train_Test(imgname):
 
     kNearest.train(npaFlattenedImages, cv2.ml.ROW_SAMPLE, npaClassifications)
 
-    imgTestingNumbers = cv2.imread(mainOutput_arabic.jpg)          # read in testing numbers image
+    imgTestingNumbers = cv2.imread("mainOutput_arabic.jpg")          # read in testing numbers image
 
     if imgTestingNumbers is None:                           # if image was not read successfully
         print ("error: image not read from file \n\n")        # print error message to std out
@@ -100,10 +100,9 @@ def Train_Test(imgname):
         return                                              # and exit function (which exits program)
     # end if
     
-    imgGray = prepNum(imgTestingNumbers)
-    cv2.imshow('',imgGray)
-    cv2.waitKey(0)
-    cv2.destroyAllWindows()
+    imgGray = cv2.cvtColor(imgTestingNumbers, cv2.COLOR_BGR2GRAY)
+    
+    
 
     imgBlurred = cv2.GaussianBlur(imgGray, (5,5), 0)                    # blur
 
