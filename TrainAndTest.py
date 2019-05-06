@@ -29,46 +29,12 @@ class ContourWithData():
         return True
 
 
-def prepNum(img):
-    
-    img = imutils.resize(img,width=1500,height=1500)
-    kernel = np.ones((3,3),np.uint8)
-    img1 = img.copy()
-    gray = cv2.cvtColor(img1,cv2.COLOR_BGR2GRAY)
-    mask = np.zeros_like(gray)
-    blurred = cv2.GaussianBlur(gray,(7,7),0)
-    thresh = cv2.adaptiveThreshold(blurred,255,cv2.ADAPTIVE_THRESH_GAUSSIAN_C,cv2.THRESH_BINARY_INV,11,2) 
-    closing = cv2.morphologyEx(thresh, cv2.MORPH_CLOSE, kernel)
-    cnts = cv2.findContours(closing.copy(), cv2.RETR_EXTERNAL,cv2.CHAIN_APPROX_SIMPLE)
-    cnts = imutils.grab_contours(cnts)
-    cnt_areas=[]
-    for cnt in cnts:
-        area = cv2.contourArea(cnt)
-        if area > 1500:
-            cnt_areas.append((area,cnt))
-    cnt_areas.sort(key=operator.itemgetter(0),reverse=True)
-    num_cnts = len(cnt_areas)
-    if num_cnts < 3:
-        cnt_areas = cnt_areas[:num_cnts]
-    else:
-        cnt_areas = cnt_areas[:3]
-    
-    for cnt in cnt_areas:
-        cv2.drawContours(mask,[cnt[1]] , 0, (255,255,255), 2)
-        
-    (x,y) = np.where(mask == 255)
-    (topx,topy) = (np.min(x),np.min(y))
-    (bottomx,bottomy) = (np.max(x),np.max(y))
-    out = img[topx:bottomx+1,topy:bottomy+1]
-    gray = cv2.cvtColor(out,cv2.COLOR_BGR2GRAY)
-    blurred = cv2.GaussianBlur(gray,(7,7),0)
-    thresh = cv2.adaptiveThreshold(blurred,255,cv2.ADAPTIVE_THRESH_GAUSSIAN_C,cv2.THRESH_BINARY,11,2) 
-    closing = cv2.morphologyEx(thresh, cv2.MORPH_CLOSE, kernel) 
-    return closing
 
-def Train_Test(imgname):
+
+def main():
     allContoursWithData = []                # declare empty lists,
     validContoursWithData = []              # we will fill these shortly
+
 
     try:
         npaClassifications = np.loadtxt("classifications.txt", np.float32)                  # read in training classifications
