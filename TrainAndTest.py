@@ -3,7 +3,7 @@ import numpy as np
 import operator
 import os
 
-MIN_CONTOUR_AREA = 50
+MIN_CONTOUR_AREA = 20
 
 RESIZED_IMAGE_WIDTH = 20
 RESIZED_IMAGE_HEIGHT = 30
