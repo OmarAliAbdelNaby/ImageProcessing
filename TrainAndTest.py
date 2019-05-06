@@ -30,11 +30,9 @@ class ContourWithData():
 
 
 
-
 def main():
     allContoursWithData = []                # declare empty lists,
     validContoursWithData = []              # we will fill these shortly
-
 
     try:
         npaClassifications = np.loadtxt("classifications.txt", np.float32)                  # read in training classifications
@@ -82,7 +80,7 @@ def main():
 
     imgThreshCopy = imgThresh.copy()        # make a copy of the thresh image, this in necessary b/c findContours modifies the image
 
-    imgContours, npaContours, npaHierarchy = cv2.findContours(imgThreshCopy,             # input image, make sure to use a copy since the function will modify this image in the course of finding contours
+    npaContours, npaHierarchy = cv2.findContours(imgThreshCopy,             # input image, make sure to use a copy since the function will modify this image in the course of finding contours
                                                  cv2.RETR_EXTERNAL,         # retrieve the outermost contours only
                                                  cv2.CHAIN_APPROX_SIMPLE)   # compress horizontal, vertical, and diagonal segments and leave only their end points
 
@@ -130,9 +128,8 @@ def main():
 
         strFinalString = strFinalString + strCurrentChar            # append current char to full string
 
+    print("\n" + strFinalString + "\n")
+
+if __name__ == '__main__':
+    main()
     
-    print "\n" + strFinalString + "\n"
-    
-                             
-        
-       
