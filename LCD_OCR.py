@@ -277,26 +277,26 @@ def main():
     width, height = im.size  # Get dimensions
     new_height = height / 2
 
-    left = (width - width) / 2 + 15
-    top = (height - height) / 2 + 15
-    right = ((width + width) / 2) - 15
-    bottom = (height + height) / 2 - 15
+    left = (width - width) / 2 + 18
+    top = (height - height) / 2 + 18
+    right = ((width + width) / 2) - 18
+    bottom = (height + height) / 2 - 18
 
     cropped = im.crop((left, top, right, bottom))
-    #cropped.show()
+    cropped.show()
     cropped.save('out.jpg')
     #---------------------------------------------------------------
 
     #------------------------ Resizing -----------------------------
     blurred, gray_img = load_image('out.jpg', show=False)
     output = gray_img
-    scale_percent = 200  # percent of original size
+    scale_percent = 150  # percent of original size
     width = int(output.shape[1] * scale_percent / 100)
     height = int(output.shape[0] * scale_percent / 100)
     dim = (width, height)
     # resize image
     resized = cv2.resize(output, dim, interpolation=cv2.INTER_AREA)
-    #cv2.imshow('resiezewd', resized)
+    cv2.imshow('resiezewd', resized)
     cv2.waitKey(0)
     #--------------------------------------------------------------
 
