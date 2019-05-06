@@ -283,7 +283,7 @@ def main():
     bottom = (height + height) / 2 - 18
 
     cropped = im.crop((left, top, right, bottom))
-    cropped.show()
+    #cropped.show()
     cropped.save('out.jpg')
     #---------------------------------------------------------------
 
@@ -296,8 +296,8 @@ def main():
     dim = (width, height)
     # resize image
     resized = cv2.resize(output, dim, interpolation=cv2.INTER_AREA)
-    cv2.imshow('resiezewd', resized)
-    cv2.waitKey(0)
+    #cv2.imshow('resiezewd', resized)
+    #cv2.waitKey(0)
     #--------------------------------------------------------------
 
     dst = preprocess(resized, THRESHOLD, show=False)
