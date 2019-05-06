@@ -1,6 +1,7 @@
 from imutils.perspective import four_point_transform
 import imutils
 import cv2
+from PIL import Image
 
 
 # define the dictionary of digit segments so we can identify
@@ -19,12 +20,30 @@ DIGITS_LOOKUP = {
 }
 
 # load the example image
-image = cv2.imread('example22_6.jpg')
+imageGray = cv2.imread('electricityLCD1.png', 0)
+cv2.imwrite('ayHaga.jpg', imageGray)
+
+im = Image.open('ayHaga.jpg')
+width, height = im.size  # Get dimensions
+new_height = height / 2
+
+left = (width - width) / 2
+top = (height - height) / 2
+right = ((width + width) / 2)
+bottom = (height + height) / 2 - 380
+
+cropped = im.crop((left, top, right, bottom))
+#cropped.show()
+cropped.save('outLCD.jpg')
+
+image = cv2.imread('outLCD.jpg')
+#cv2.imshow("image", image)
+#cv2.waitKey()
 
 # pre-process the image by resizing it, converting it to
 # graycale, blurring it, and computing an edge map
-image = imutils.resize(image, height=500)
-gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+image1 = imutils.resize(image, height=500)
+gray = cv2.cvtColor(image1, cv2.COLOR_BGR2GRAY)
 blurred = cv2.GaussianBlur(gray, (5, 5), 0)
 edged = cv2.Canny(blurred, 50, 200, 255)
 
