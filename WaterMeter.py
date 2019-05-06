@@ -60,3 +60,4 @@ thresh1 = 50
 im_bw = cv2.threshold(warped, thresh1, 255, cv2.THRESH_BINARY)[1]
 cv2.imwrite("outputServer_waterMeter.jpg", im_bw)
 
+#this image goes to newOCR API to be recognized isA
