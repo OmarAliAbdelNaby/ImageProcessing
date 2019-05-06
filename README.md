@@ -7,3 +7,5 @@ You must run LCDdetection.py first then LCD_OCR.py
 You must run main.py 
 - **for traditional Arabic meters:**
 You must run main_arabic.py 
+- **for Water Meters:**
+You must run WaterMeter.py 
