@@ -277,10 +277,10 @@ def main():
     width, height = im.size  # Get dimensions
     new_height = height / 2
 
-    left = (width - width) / 2 + 18
-    top = (height - height) / 2 + 18
-    right = ((width + width) / 2) - 18
-    bottom = (height + height) / 2 - 18
+    left = (width - width) / 2 + 35
+    top = (height - height) / 2 + 35
+    right = ((width + width) / 2) - 35
+    bottom = (height + height) / 2 - 35
 
     cropped = im.crop((left, top, right, bottom))
     #cropped.show()
