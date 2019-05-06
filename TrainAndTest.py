@@ -131,7 +131,8 @@ def main():
         strFinalString = strFinalString + strCurrentChar            # append current char to full string
 
     
-    return ("\n" + strFinalString + "\n")
+    print "\n" + strFinalString + "\n"
+    
                              
         
        
